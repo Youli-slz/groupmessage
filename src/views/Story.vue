@@ -256,7 +256,7 @@ export default {
         // 默认 false，key为文件名。若开启该选项，SDK会为每个文件自动生成key（文件名）
         save_key: true,
         // 默认 false。若在服务端生成uptoken的上传策略中指定了 `sava_key`，则开启，SDK在前端将不对key进行任何处理
-        domain: 'http://oe3slowqt.bkt.clouddn.com/',
+        domain: 'http://7xld1x.com1.z0.glb.clouddn.com/',
         //bucket 域名，下载资源时用到，**必需**
         container: 'btnwrap1', //上传区域DOM ID，默认是browser_button的父元素，
         max_file_size: '5mb', //最大文件体积限制
@@ -278,7 +278,7 @@ export default {
           'FileUploaded': function(up, file, info) {
             var domain = up.getOption('domain');
             var res = JSON.parse(info);
-            var urlImg = 'http://oe3slowqt.bkt.clouddn.com/' + res.key;
+            var urlImg = 'http://7xld1x.com1.z0.glb.clouddn.com/' + res.key;
             self.imgup = urlImg
           },
           'Error': function(up, err, errTip) {
@@ -301,7 +301,7 @@ export default {
         // 默认 false，key为文件名。若开启该选项，SDK会为每个文件自动生成key（文件名）
         save_key: true,
         // 默认 false。若在服务端生成uptoken的上传策略中指定了 `sava_key`，则开启，SDK在前端将不对key进行任何处理
-        domain: 'http://oe3slowqt.bkt.clouddn.com/',
+        domain: 'http://7xld1x.com1.z0.glb.clouddn.com/',
         //bucket 域名，下载资源时用到，**必需**
         container: 'btnwrap', //上传区域DOM ID，默认是browser_button的父元素，
         max_file_size: '5mb', //最大文件体积限制
@@ -323,7 +323,7 @@ export default {
           'FileUploaded': function(up, file, info) {
             var domain = up.getOption('domain');
             var res = JSON.parse(info);
-            var urlImg = 'http://oe3slowqt.bkt.clouddn.com/' + res.key;
+            var urlImg = 'http://7xld1x.com1.z0.glb.clouddn.com/' + res.key;
             self.img = urlImg
           },
           'Error': function(up, err, errTip) {
@@ -335,13 +335,13 @@ export default {
     },
     getuptoken:function(){
       var self = this;
-      this.axios.get('http://tym.taoyumin.cn/index.php?r=search/token').then((response) => {
-        var data = JSON.parse(response.data)        
-        if(data.state == 1000){
-          self.uptoken = data.data
+      this.axios.get('http://wxmp.gatao.cn/mypic/gettoken').then((response) => {
+        var data = response.data
+        // if(data.state == 1000){
+          self.uptoken = data.token
           self.uploadimg1()
           self.uploadimg()              
-        }
+        // }
       }, (response) => {
         // error callback
       });
