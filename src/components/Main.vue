@@ -45,6 +45,15 @@ export default {
     }
   },
   methods: {
+      getCookie: function (name) {
+        var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+ 
+        if(arr=document.cookie.match(reg))
+ 
+          return unescape(arr[2]); 
+        else 
+          return null;
+      },
       handselect(index, indexPath){
         if(index == '/sendmessage'){
           window.open(index)
@@ -62,10 +71,11 @@ export default {
         }
         else if(index == 'loginout'){
           var self = this
-          this.axios.get('http://tym.taoyumin.cn/index.php?r=user/logout',{withCredentials: true})
+          var ca = self.getCookie('token');
+          this.axios.get('http://wxmp.gatao.cn/realtech/logout?token='+ ca)
           .then((response) => {
             var data = response.data
-            if(data.state == 1000){
+            if(data.code == 0){
               self.$router.push("/")
             }
            
@@ -73,26 +83,26 @@ export default {
             console.log(response);
           });
         }
-      },
-      getuser: function () {
-        var self = this
-        this.axios.get('http://tym.taoyumin.cn/index.php?r=user/checklogin',{withCredentials: true})
-          .then((response) => {
-            var data = response.data
-            if(data.state == 1000){
-              self.user = data.data.userName
-            }
-            else{
-              self.$router.push("/")
-            }
-          }, (response) => {
-            console.log(response);
-          });
       }
+      // getuser: function () {
+      //   var self = this
+      //   this.axios.get('http://tym.taoyumin.cn/index.php?r=user/checklogin',{withCredentials: true})
+      //     .then((response) => {
+      //       var data = response.data
+      //       if(data.state == 1000){
+      //         self.user = data.data.userName
+      //       }
+      //       else{
+      //         self.$router.push("/")
+      //       }
+      //     }, (response) => {
+      //       console.log(response);
+      //     });
+      // }
     },
     created: function () {
       this.active = this.$route.path
-      this.getuser()
+      // this.getuser()
     }
 }
 </script>
