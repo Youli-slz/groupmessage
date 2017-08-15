@@ -45,7 +45,7 @@ export default {
         self.RealtechLoginSearch.password = self.ruleForm.pass;
         this.$refs[formName].validate((valid) => {
           if (valid) {
-            self.axios.post('http://wxmp.gatao.cn/realtech/login',{RealtechLoginSearch: self.RealtechLoginSearch})
+            self.axios.post('http://wxmp.gatao.cn/realtech/login',{RealtechLoginSearch: self.RealtechLoginSearch,type: 1})
               .then((response) => {
                 var data = response.data
                 if(data.code == 0){
